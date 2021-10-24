@@ -6,11 +6,6 @@ import useHttp from '../hooks/use-http';
 import { getSingleQuote } from '../lib/api';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 
-const DUMMY_QUOTES = [
-  { id: 'q1', author: 'Max', text: 'Learning React is fun!' },
-  { id: 'q2', author: 'Maximillian', text: 'Learning React is great!' },
-];
-
 const QuoteDetail = () => {
   const match = useRouteMatch();
   const params = useParams();
@@ -35,10 +30,10 @@ const QuoteDetail = () => {
   }
 
   if (error) {
-    return <p className="centered focused">{error}</p>;
+    return <p className="centered">{error}</p>;
   }
 
-  if (loadedQuote.text) {
+  if (!loadedQuote.text) {
     return <p>No quote found!</p>;
   }
 
